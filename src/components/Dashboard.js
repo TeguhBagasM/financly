@@ -62,15 +62,13 @@ const Dashboard = () => {
 
       if (transaction.type === "income") {
         if (balanceData.some((data) => data.month === monthYear)) {
-          balanceData.find((data) => data.month === monthYear).balance +=
-            transaction.amount;
+          balanceData.find((data) => data.month === monthYear).balance += transaction.amount;
         } else {
           balanceData.push({ month: monthYear, balance: transaction.amount });
         }
       } else {
         if (balanceData.some((data) => data.month === monthYear)) {
-          balanceData.find((data) => data.month === monthYear).balance -=
-            transaction.amount;
+          balanceData.find((data) => data.month === monthYear).balance -= transaction.amount;
         } else {
           balanceData.push({ month: monthYear, balance: -transaction.amount });
         }
@@ -152,10 +150,7 @@ const Dashboard = () => {
 
   async function addTransaction(transaction, many) {
     try {
-      const docRef = await addDoc(
-        collection(db, `users/${user.uid}/transactions`),
-        transaction
-      );
+      const docRef = await addDoc(collection(db, `users/${user.uid}/transactions`), transaction);
       console.log("Document written with ID: ", docRef.id);
       if (!many) {
         toast.success("Transaction Added!");
@@ -179,7 +174,7 @@ const Dashboard = () => {
         transactionsArray.push(doc.data());
       });
       setTransactions(transactionsArray);
-      toast.success("Transactions Fetched!");
+      // toast.success("Transactions Fetched!");
     }
     setLoading(false);
   }

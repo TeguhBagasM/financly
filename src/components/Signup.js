@@ -51,11 +51,7 @@ const SignUpSignIn = () => {
     setLoading(true);
     e.preventDefault();
     try {
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const result = await createUserWithEmailAndPassword(auth, email, password);
       const user = result.user;
       await createUserDocument(user);
       toast.success("Successfully Signed Up!");
@@ -63,10 +59,7 @@ const SignUpSignIn = () => {
       navigate("/dashboard");
     } catch (error) {
       toast.error(error.message);
-      console.error(
-        "Error signing up with email and password: ",
-        error.message
-      );
+      console.error("Error signing up with email and password: ", error.message);
       setLoading(false);
     }
   };
@@ -82,10 +75,7 @@ const SignUpSignIn = () => {
       setLoading(false);
     } catch (error) {
       toast.error(error.message);
-      console.error(
-        "Error signing in with email and password: ",
-        error.message
-      );
+      console.error("Error signing in with email and password: ", error.message);
       setLoading(false);
     }
   };
@@ -136,22 +126,18 @@ const SignUpSignIn = () => {
                 />
               </div>
 
-              <button
-                disabled={loading}
-                className="btn"
-                onClick={signInWithEmail}
-              >
+              <button disabled={loading} className="btn" onClick={signInWithEmail}>
                 {loading ? "Loading..." : " Log In with Email and Password"}
               </button>
             </form>
             <p style={{ textAlign: "center", margin: 0 }}>or</p>
-            <button
+            {/* <button
               disabled={loading}
               className="btn btn-blue"
               onClick={signInWithGoogle}
             >
               {loading ? "Loading..." : " Log In with Google"}
-            </button>
+            </button> */}
             <p
               onClick={() => setFlag(!flag)}
               style={{
@@ -214,11 +200,7 @@ const SignUpSignIn = () => {
               </button>
             </form>
             <p style={{ textAlign: "center", margin: 0 }}>or</p>
-            <button
-              disabled={loading}
-              className="btn btn-blue"
-              onClick={signInWithGoogle}
-            >
+            <button disabled={loading} className="btn btn-blue" onClick={signInWithGoogle}>
               {loading ? "Loading..." : "Sign Up with Google"}
             </button>
             <p
